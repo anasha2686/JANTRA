@@ -61,17 +61,20 @@
         const IS_PREVIEW = false; 
 
         // FIREBASE SETUP (100% DATABASE FIREBASE FIRESTORE - TANPA GAS/SHEETS)
-        const firebaseConfig = {
-          apiKey: "AIzaSyDh1PReuF2EECD9FfGOumPHbHPrM3-aoJo",
-          authDomain: "jantra-1c941.firebaseapp.com",
-          projectId: "jantra-1c941",
-          storageBucket: "jantra-1c941.firebasestorage.app",
-          messagingSenderId: "530716959270",
-          appId: "1:530716959270:web:2986a72f92abeabddbbce7",
-          measurementId: "G-QCEN6LLCTQ"
+        // FIREBASE SETUP (100% DATABASE FIREBASE FIRESTORE - TANPA GAS/SHEETS)
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+            apiKey: "AIzaSyDh1PReuF2EECD9FfGOumPHbHPrM3-aoJo",
+            authDomain: "jantra-1c941.firebaseapp.com",
+            projectId: "jantra-1c941",
+            storageBucket: "jantra-1c941.firebasestorage.app",
+            messagingSenderId: "530716959270",
+            appId: "1:530716959270:web:2986a72f92abeabddbbce7",
+            measurementId: "G-QCEN6LLCTQ"
         };
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
 
         // PROTEKSI ANTI HACKER
         document.addEventListener('contextmenu', event => { event.preventDefault(); Swal.fire({icon: 'warning', title: 'Akses Ditolak', text: 'Klik kanan dinonaktifkan demi keamanan.', timer: 1500, showConfirmButton: false}); });
